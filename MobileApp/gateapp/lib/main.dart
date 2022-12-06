@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
         body: StreamBuilder(
           stream: channel.stream,
           builder: (context, snapshot) {
-            textController.text = snapshot.hasData ? '${snapshot.data}' : '';
+            textController.text =
+                snapshot.hasData ? '${snapshot.data}' : 'Server is Offline';
             return Column(children: [
               const SizedBox(
                 height: 350,
