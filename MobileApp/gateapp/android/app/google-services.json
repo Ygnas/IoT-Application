@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "692905213454",
+    "firebase_url": "https://pipi-6383e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "pipi-6383e",
+    "storage_bucket": "pipi-6383e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692905213454:android:758705993a319b15ddc65f",
+        "android_client_info": {
+          "package_name": "com.example.gateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692905213454-5mm2kcvbjh7u8ats4viahqtkdmr96aol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCItUwSQ4MM7EtlwSGfrWpKXrveF5uieD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692905213454-5mm2kcvbjh7u8ats4viahqtkdmr96aol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
