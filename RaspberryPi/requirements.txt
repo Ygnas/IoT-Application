@@ -1,0 +1,4 @@
+asyncio==3.4.3
+firebase-admin==5.4.0
+paho-mqtt==1.6.1
+websockets==10.4
