@@ -71,6 +71,9 @@ In case you want everything to work outside your local network you will need to 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+Open phone application, and press it to open.
+<img src="https://raw.githubusercontent.com/Ygnas/IoT-Application/main/Screenshots/open.jpg" height="320">
+<img src="https://raw.githubusercontent.com/Ygnas/IoT-Application/main/Screenshots/opening.jpg" height="320">
 
 <!-- CONTRIBUTING -->
 ## Contributing
