@@ -48,7 +48,7 @@ mqttc.on_connect = on_connect
 mqttc.on_publish = on_publish
 
 # Connect
-mqttc.connect(MQTT_IP, MQTT_PORT)
+mqttc.connect(MQTT_IP, int(MQTT_PORT))
 mqttc.loop_start()
 
 async def echo(websocket, path):
