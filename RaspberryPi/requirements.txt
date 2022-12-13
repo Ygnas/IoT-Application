@@ -3,3 +3,4 @@ firebase-admin==5.4.0
 paho-mqtt==1.6.1
 websockets==10.4
 python-dotenv==0.21.0
+sense-hat==2.4.0
