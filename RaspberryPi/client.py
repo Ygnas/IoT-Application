@@ -17,6 +17,7 @@ def on_publish(client, obj, mid):
 mqttc = mqtt.Client()
 sense = SenseHat()
 
+# Colours for sensehat to use
 blue = (0,0,255)
 red = (255,0,0)
 
