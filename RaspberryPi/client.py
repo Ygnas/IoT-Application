@@ -37,7 +37,7 @@ mqttc.on_publish = on_publish
 
 # Connect to local Mosquitto broker
 try:
-    mqttc.connect(MQTT_IP, MQTT_PORT)
+    mqttc.connect(MQTT_IP, int(MQTT_PORT))
     mqttc.loop_start()
 except:
     print("Could not connect to MQTT broker\n")
