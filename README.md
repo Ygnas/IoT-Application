@@ -34,9 +34,38 @@ In case you want everything to work outside your local network you will need to 
   ```sh
   python
   pip
+  mosquito broker
   ```
 
 ### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Ygnas/IoT-Application
+   ```
+2. Open the Firebase console and create a new project [https://console.firebase.google.com/](https://console.firebase.google.com/)
+3. After your project is ready, you can create a Realtime Database.
+4. In the Service Accounts tab Generate new private key
+5. In RaspberryPi folder copy generated private key content to serviceAccountKey.json and fill up .env file
+6. Install required packages to your *Raspberry Pi* and/or your cloud host (if using it)
+   ```sh
+   cd RaspberryPi
+   pip install -r requirements.txt
+   ```
+7. Now you are ready to launch everything
+   * On your *Raspberry Pi*
+   ```sh
+   python client.py
+   ```
+   * On your *cloud host*
+   ```sh
+   python server.py
+   ```
+   * If not using *cloud host* you can launch both on *Raspberry Pi* using tmux/screen
+8. Flash your esp32 from ESP32 folder. (don't forget to fill up your details in AppSecrets.h)
+9. Connect it to your intercom system (you will have to figure that your self as every system is different)
+10. Install gate_app.apk to your android phone (or build it for Iphone)
+11. Open the gate from your phone 🤯😎🥳
 
 
 <!-- USAGE EXAMPLES -->
