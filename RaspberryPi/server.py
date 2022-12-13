@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
+import os
 from urllib.parse import urlparse
 import paho.mqtt.client as mqtt
 import asyncio
 import websockets
 import firebase_admin
 from firebase_admin import credentials, storage, db
-import os
 from datetime import datetime
+from dotenv import load_dotenv
 
 connected = set()
 reply = "Can Be Opened"
@@ -18,6 +19,15 @@ firebase_admin.initialize_app(cred, {
     'storageBucket': 'pipi-6383e.appspot.com',
     'databaseURL':'https://pipi-6383e-default-rtdb.europe-west1.firebasedatabase.app/'
 })
+
+# load_dotenv() will first look for a .env file and if it finds one, 
+# it will load the environment variables from the file and make them 
+# accessible to your project like any other environment variable would be.
+load_dotenv()
+
+SERVER_PORT = os.getenv("SERVER_PORT")
+MQTT_IP = os.getenv("MQTT_IP")
+MQTT_PORT = os.getenv("MQTT_PORT")
 
 bucket = storage.bucket()
 
@@ -38,7 +48,7 @@ mqttc.on_connect = on_connect
 mqttc.on_publish = on_publish
 
 # Connect
-mqttc.connect("192.168.0.138", 1883)
+mqttc.connect(MQTT_IP, MQTT_PORT)
 mqttc.loop_start()
 
 async def echo(websocket, path):
@@ -82,5 +92,5 @@ def push_db(message):
         'timestamp': daytime}
     )
 
-asyncio.get_event_loop().run_until_complete(websockets.serve(echo, '0.0.0.0', 8000))
+asyncio.get_event_loop().run_until_complete(websockets.serve(echo, '0.0.0.0', SERVER_PORT))
 asyncio.get_event_loop().run_forever()
