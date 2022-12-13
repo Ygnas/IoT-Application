@@ -4,6 +4,7 @@ import asyncio
 import os
 import websockets
 import paho.mqtt.client as mqtt
+from sense_hat import SenseHat
 from dotenv import load_dotenv
 
 def on_connect(client, userdata, flags, rc):
@@ -14,6 +15,10 @@ def on_publish(client, obj, mid):
     print("Message ID: " + str(mid))
 
 mqttc = mqtt.Client()
+sense = SenseHat()
+
+blue = (0,0,255)
+red = (255,0,0)
 
 # load_dotenv() will first look for a .env file and if it finds one, 
 # it will load the environment variables from the file and make them 
@@ -44,11 +49,15 @@ async def client():
 
         # Process messages received on the connection.
         async for message in websocket:
+            # Sensehat shows blue 'O' when gates can be opened
+            sense.show_letter("O", text_colour=blue)
             if (message == "Opening"):
                 # If no MQTT connection, new thread to process network traffic
                 # is never started so it's safe to leave this one as is..?
                 # IF there is a connection it will publish message 'off' on topic 'gates'
                 mqttc.publish("gates", "off")
+                # Sensehat display red 'X' when gates are opening
+                sense.show_letter("X", text_colour=red)
                 print("Received: " + message)
 
 asyncio.run(client())
