@@ -1,9 +1,6 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
-
-const char* ssid     = "";
-const char* password = "";
-const char* mqtt_server = "";
+#include <AppSecrets.h>
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -14,7 +11,7 @@ int value = 0;
 void setup() {
   Serial.begin(115200);
   setup_wifi();
-  client.setServer(mqtt_server, 1883);
+  client.setServer(MQTT_IP, 1883);
   client.setCallback(callback);
 
   pinMode(LED, OUTPUT);
@@ -32,9 +29,9 @@ void setup_wifi() {
   delay(10);
   Serial.println();
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(SSID);
 
-  WiFi.begin(ssid, password);
+  WiFi.begin(SSID, PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
