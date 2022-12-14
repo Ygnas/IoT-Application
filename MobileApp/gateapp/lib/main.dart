@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final channel = WebSocketChannel.connect(
-    Uri.parse('ws://192.168.0.138:8000'),
+    Uri.parse('ws://164.92.134.245:8000'),
   );
 
   final ref = FirebaseDatabase.instance.ref().child("gate_log").limitToLast(1);
@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
                           height: 15,
                         ),
                         const Center(
-                          child: Text("By the gate:"),
+                          child: Text("Was by the gate:"),
                         ),
                         Center(
                           child: FutureBuilder(
