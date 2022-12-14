@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                 snapshot.hasData ? '${snapshot.data}' : 'Server is Offline';
             return Column(children: [
               const SizedBox(
-                height: 350,
+                height: 250,
               ),
               Center(
                 child: Text(
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 15,
               ),
               Container(
                 child: textController.text == "Can Be Opened"
