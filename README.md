@@ -64,7 +64,7 @@ In case you want everything to work outside your local network you will need to 
    * If not using *cloud host* you can launch both on *Raspberry Pi* using tmux/screen
 8. Flash your esp32 from ESP32 folder. (don't forget to fill up your details in AppSecrets.h)
 9. Connect it to your intercom system (you will have to figure that your self as every system is different)
-10. Install gate_app.apk to your android phone (or build it for Iphone)[https://firebase.google.com/docs/flutter/setup?platform=android/](https://firebase.google.com/docs/flutter/setup?platform=android/)
+10. Install gate_app.apk to your android phone (or build it for Iphone) [https://firebase.google.com/docs/flutter/setup?platform=android/](https://firebase.google.com/docs/flutter/setup?platform=android/)
 11. Open the gate from your phone 🤯😎🥳
 
 
