@@ -56,6 +56,7 @@ def store_file(fileLoc):
     filename=os.path.basename(fileLoc)
     blob = bucket.blob(filename) # Store File in Fb Bucket
     blob.upload_from_filename(fileLoc)
+    print(f"{fileLoc} has been uploaded")
 
 async def client():
     # Formatted string literals are prefixed with 'f' and are similar to the format strings
