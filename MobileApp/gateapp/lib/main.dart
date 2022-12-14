@@ -74,9 +74,6 @@ class MyApp extends StatelessWidget {
                         backgroundColor: Colors.red,
                       ),
               ),
-              const SizedBox(
-                height: 50,
-              ),
               StreamBuilder(
                 stream: ref.onValue,
                 builder: (context, snapshot) {
@@ -85,17 +82,19 @@ class MyApp extends StatelessWidget {
                     return Expanded(
                         child: ListView(
                       children: [
-                        const Center(
-                          child: Text("Last time gate was opened."),
-                        ),
-                        Center(
-                          child: Text(gate.entries.first.value["timestamp"]),
-                        ),
-                        const SizedBox(
-                          height: 15,
+                        ListTile(
+                          title: const Center(child: Text("Last time opened:")),
+                          subtitle: Center(
+                              child:
+                                  Text(gate.entries.first.value["timestamp"])),
                         ),
                         const Center(
-                          child: Text("Was by the gate:"),
+                          child: ListTile(
+                            title: Center(child: Text("Was by the gate:")),
+                            subtitle: Center(
+                                child:
+                                    Text("Updated once gates can be opened")),
+                          ),
                         ),
                         Center(
                           child: FutureBuilder(
