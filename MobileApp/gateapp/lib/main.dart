@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
     Uri.parse('ws://192.168.0.138:8000'),
   );
 
+  final ref = FirebaseDatabase.instance.ref().child("gate_log").limitToLast(1);
+  final storageRef = FirebaseStorage.instance.ref().child("image.jpg");
+
   final textController = TextEditingController();
 
   void dispose() {
@@ -71,6 +74,48 @@ class MyApp extends StatelessWidget {
                         backgroundColor: Colors.red,
                       ),
               ),
+              const SizedBox(
+                height: 50,
+              ),
+              StreamBuilder(
+                stream: ref.onValue,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    Map gate = snapshot.data?.snapshot.value as Map;
+                    return Expanded(
+                        child: ListView(
+                      children: [
+                        const Center(
+                          child: Text("Last time gate was opened."),
+                        ),
+                        Center(
+                          child: Text(gate.entries.first.value["timestamp"]),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Center(
+                          child: Text("By the gate:"),
+                        ),
+                        Center(
+                          child: FutureBuilder(
+                            future: storageRef.getDownloadURL(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Image.network(
+                                  snapshot.data.toString(),
+                                );
+                              }
+                              return const CircularProgressIndicator();
+                            },
+                          ),
+                        )
+                      ],
+                    ));
+                  }
+                  return const CircularProgressIndicator();
+                },
+              )
             ]);
           },
         ),
