@@ -30,6 +30,13 @@
             {
               "client_id": "692905213454-5mm2kcvbjh7u8ats4viahqtkdmr96aol.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "692905213454-st27pnvm6lmn4ag91a1hrv0t4upkljfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gateapp"
+              }
             }
           ]
         }
