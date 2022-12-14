@@ -26,7 +26,7 @@ This project is made up of few smaller 'projects'
 
 ### Prerequisites
 
-For this project you need to have ESP32 and a relay to control your intercom system, RaspberryPi with SenseHat, and Mobile phone (for Iphone you would need to build it yourself) running Android and have an Firebase account with Realtime Database.
+For this project you need to have ESP32 and a relay to control your intercom system, RaspberryPi with SenseHat and camera module, and Mobile phone (for Iphone you would need to build it yourself) running Android and have an Firebase account with Realtime Database.
 
 In case you want everything to work outside your local network you will need to do Port forwarding or have a cloud hosting provider. (In my case)
 
@@ -64,7 +64,7 @@ In case you want everything to work outside your local network you will need to 
    * If not using *cloud host* you can launch both on *Raspberry Pi* using tmux/screen
 8. Flash your esp32 from ESP32 folder. (don't forget to fill up your details in AppSecrets.h)
 9. Connect it to your intercom system (you will have to figure that your self as every system is different)
-10. Install gate_app.apk to your android phone (or build it for Iphone)
+10. Install gate_app.apk to your android phone (or build it for Iphone)[https://firebase.google.com/docs/flutter/setup?platform=android](How to connect firebase to flutter)
 11. Open the gate from your phone 🤯😎🥳
 
 
