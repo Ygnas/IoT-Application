@@ -53,10 +53,17 @@ except:
     print("Could not connect to MQTT broker\n")
 
 def store_file(fileLoc):
-    filename=os.path.basename(fileLoc)
-    blob = bucket.blob(filename) # Store File in Fb Bucket
-    blob.upload_from_filename(fileLoc)
-    print(f"{fileLoc} has been uploaded")
+    try:
+        filename=os.path.basename(fileLoc)
+        blob = bucket.blob(filename) # Store File in Fb Bucket
+        blob.upload_from_filename(fileLoc)
+        print(f"{fileLoc} has been uploaded")
+    except:
+        # https://cloud.google.com/functions/quotas#time_limits
+        # There is a function limit of 10 minutes, after that connection would be reset
+        # And by getting the blob it aquires the connection so calling same function fixes it.
+        print("Firebase connection lost. Reconnecting...")
+        store_file(fileLoc)
 
 async def client():
     # Formatted string literals are prefixed with 'f' and are similar to the format strings
@@ -70,10 +77,8 @@ async def client():
             sense.show_letter("O", text_colour=blue)
             if (message == "Opening"):
                 camera.capture("image.jpg")
-                try:
-                    store_file("image.jpg")
-                except:
-                    print("Failed to store image")
+                # Stores a file in firebase store
+                store_file("image.jpg")
                 # If no MQTT connection, new thread to process network traffic
                 # is never started so it's safe to leave this one as is..?
                 # IF there is a connection it will publish message 'off' on topic 'gates'
