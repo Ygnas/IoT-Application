@@ -5,17 +5,27 @@ import os
 import websockets
 import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
+import firebase_admin
+from firebase_admin import credentials, storage
+from picamera import PiCamera
 from dotenv import load_dotenv
+
+# serviceAccountKey.json is needed to be able to connect to firebase
+cred=credentials.Certificate('./serviceAccountKey.json')
+firebase_admin.initialize_app(cred, {
+    'storageBucket': 'pipi-6383e.appspot.com'
+})
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT")
-
 
 def on_publish(client, obj, mid):
     print("Message ID: " + str(mid))
 
 mqttc = mqtt.Client()
+bucket = storage.bucket()
 sense = SenseHat()
+camera = PiCamera()
 
 # Colours for sensehat to use
 blue = (0,0,255)
@@ -42,6 +52,11 @@ try:
 except:
     print("Could not connect to MQTT broker\n")
 
+def store_file(fileLoc):
+    filename=os.path.basename(fileLoc)
+    blob = bucket.blob(filename) # Store File in Fb Bucket
+    blob.upload_from_filename(fileLoc)
+
 async def client():
     # Formatted string literals are prefixed with 'f' and are similar to the format strings
     uri = f"ws://{SERVER_IP}:{SERVER_PORT}"
@@ -53,6 +68,11 @@ async def client():
             # Sensehat shows blue 'O' when gates can be opened
             sense.show_letter("O", text_colour=blue)
             if (message == "Opening"):
+                camera.capture("image.jpg")
+                try:
+                    store_file("image.jpg")
+                except:
+                    print("Failed to store image")
                 # If no MQTT connection, new thread to process network traffic
                 # is never started so it's safe to leave this one as is..?
                 # IF there is a connection it will publish message 'off' on topic 'gates'
