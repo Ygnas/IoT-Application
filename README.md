@@ -32,7 +32,7 @@ In case you want everything to work outside your local network you will need to 
 
 * Required
   ```sh
-  python
+  python3
   pip
   mosquito broker
   ```
