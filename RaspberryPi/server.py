@@ -60,15 +60,16 @@ async def echo(websocket, path):
         await broadcast(0)
         # Broadcast a message to all connected clients.
         async for message in websocket:
-            # Published message to MQTT broker
-            mqttc.publish("gates", "off")
-            # Sends data to firebase with message
-            push_db("Gate Open")
-            reply = "Openning"
-            print("Received: " + message)
-            await broadcast(15)
-            reply = "Can Be Opened"
-            await broadcast(0)
+            if (message == "Open"):
+                # Published message to MQTT broker
+                mqttc.publish("gates", "off")
+                # Sends data to firebase with message
+                push_db("Gate Open")
+                reply = "Openning"
+                print("Received: " + message)
+                await broadcast(15)
+                reply = "Can Be Opened"
+                await broadcast(0)
     except:
         # When android app is force closed print this.
         print("\nClient Disconnected\n")
