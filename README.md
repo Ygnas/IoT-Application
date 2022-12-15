@@ -26,7 +26,7 @@ This project is made up of few smaller 'projects'
 
 ### Prerequisites
 
-For this project you need to have ESP32 and a relay to control your intercom system, RaspberryPi with SenseHat and camera module, and Mobile phone (for Iphone you would need to build it yourself) running Android and have an Firebase account with Realtime Database.
+For this project you need to have ESP32 and a relay to control your intercom system, RaspberryPi with SenseHat and camera module, and Mobile phone (for Iphone you would need to build it yourself) running Android and have an Firebase account with Realtime Database, Storage.
 
 In case you want everything to work outside your local network you will need to do Port forwarding or have a cloud hosting provider. (In my case)
 
