@@ -40,7 +40,7 @@ async def echo(websocket, path):
         await broadcast(0)
         # Broadcast a message to all connected clients.
         async for message in websocket:
-            if (message == "Open"):
+            if (message == "open"):
                 # Sends data to firebase with message
                 push_db("Gate Open")
                 reply = "Openning"
