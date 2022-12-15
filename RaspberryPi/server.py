@@ -2,7 +2,6 @@
 
 import os
 from urllib.parse import urlparse
-import paho.mqtt.client as mqtt
 import asyncio
 import websockets
 import firebase_admin
@@ -26,30 +25,11 @@ firebase_admin.initialize_app(cred, {
 load_dotenv()
 
 SERVER_PORT = os.getenv("SERVER_PORT")
-MQTT_IP = os.getenv("MQTT_IP")
-MQTT_PORT = os.getenv("MQTT_PORT")
 
 bucket = storage.bucket()
 
 ref = db.reference('/')
 home_ref = ref.child('gate_log')
-
-def on_connect(client, userdata, flags, rc):
-    print("Connected to MQTT")
-
-
-def on_publish(client, obj, mid):
-    print("Message ID: " + str(mid))
-
-mqttc = mqtt.Client()
-
-# Assign event callbacks
-mqttc.on_connect = on_connect
-mqttc.on_publish = on_publish
-
-# Connect
-mqttc.connect(MQTT_IP, int(MQTT_PORT))
-mqttc.loop_start()
 
 async def echo(websocket, path):
     # So it would use global reply variable and not make one local to the function
@@ -61,8 +41,6 @@ async def echo(websocket, path):
         # Broadcast a message to all connected clients.
         async for message in websocket:
             if (message == "Open"):
-                # Published message to MQTT broker
-                mqttc.publish("gates", "off")
                 # Sends data to firebase with message
                 push_db("Gate Open")
                 reply = "Openning"
