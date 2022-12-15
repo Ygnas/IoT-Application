@@ -43,7 +43,7 @@ async def echo(websocket, path):
             if (message == "open"):
                 # Sends data to firebase with message
                 push_db("Gate Open")
-                reply = "Openning"
+                reply = "Opening"
                 print("Received: " + message)
                 await broadcast(15)
                 reply = "Can Be Opened"
